@@ -1,0 +1,47 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+class TreeNode
+{
+public:
+	int data;
+	TreeNode* left;
+	TreeNode* right;
+
+	TreeNode(int val)
+	{
+		data=val;
+		left=right=nullptr;
+	}
+};
+
+void treeright(int val,TreeNode* head)
+{
+    TreeNode* dummy=new TreeNode(val);
+    head->right=dummy;
+}
+void treeleft(int val,TreeNode* head){
+    TreeNode* dummy=new TreeNode(val);
+    head->left=dummy;
+}
+void display(TreeNode* head)
+{
+    if(!head)
+    {
+    	return;
+    }
+    cout<<head->data<<" ";
+    display(head->left);
+    display(head->right);
+}
+
+int main()
+{
+	TreeNode* head=new TreeNode(5);
+	treeright(10,head);
+	treeleft(20,head);
+	treeright(203,head->right);
+	treeright(249,head->left);
+	display(head);
+	return 0;
+}
