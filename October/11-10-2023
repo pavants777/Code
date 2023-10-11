@@ -1,0 +1,54 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+class Solution
+{
+	int arr[1001];
+	int top;
+public:
+	Solution(){
+		top=-1;
+	}
+
+	void push(int x)
+	{
+		arr[++top]=x;
+	}
+
+	int pop()
+	{
+		if(top==-1) return -1;
+		return arr[top--];
+	}
+
+	int top_element()
+	{
+		if(top==-1) return -1;
+		else return arr[top];
+	}
+
+	int size(){
+		return top+1;
+	}
+
+	bool isEmpty(){
+		return (top==-1);
+	}
+};
+
+int main()
+{
+	Solution obj;
+	cout<<obj.top_element()<<endl;
+	obj.push(10);
+	cout<<obj.pop()<<endl;
+	obj.push(20);
+	cout<<obj.isEmpty()<<endl;
+    obj.push(30);
+    obj.push(40);
+    obj.push(50);
+    cout<<obj.size()<<endl;
+    cout<<obj.pop()<<endl;
+    cout<<obj.pop()<<endl;
+    return 0;
+}
