@@ -1,0 +1,15 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+	int arr[5] = {1,2,1,3,3};
+	int value = 0;
+
+	for(int i=0;i<5;i++)
+	{
+		value = value ^ arr[i];
+	}
+
+	cout<<value<<endl;
+	return 0;
+}
