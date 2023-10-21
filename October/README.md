@@ -1,6 +1,9 @@
 <html>
   <body>
-    <h1><strong> OUTPUT : </strong> </h1> 
+    <h1><strong> OUTPUT : </strong> </h1>
+      <hr>
+      <p>  Date : 11-10-2023 </p>
+      <p> -1 10 0 4 50 40 </p>
       <hr>
       <p>  Date : 19-10-2023</p>
       <p>  2 </p>
