@@ -1,0 +1,94 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+class MinHeap 
+{
+public:
+	vector<int> heap;
+	int size ;
+
+	MinHeap(){
+		size = 0;
+	}
+
+    void Insert(int val)
+    {
+    	int i = size;
+    	heap.push_back(val);
+    	size++;
+
+    	while(i!=0 && heap[i] < heap[(i-1)/2])
+    	{
+    		swap(heap[i],heap[(i-1)/2]);
+    		i = (i-1)/2;
+    	}
+    }
+
+    void Remove(int i)
+    {
+    	heap[i] = INT_MIN;
+        while(i != 0 && heap[i]<heap[(i-1)/2])
+        {
+        	swap(heap[i],heap[(i-1)/2]);
+        	i = (i-1)/2;
+        }
+
+        extractMin();
+    }
+
+
+    int extractMin()
+    {
+    	if(size == 0) return -1;
+    	if(size == 1) {
+    		size--;
+    		return heap[size];
+    	}
+    	int root = heap[0];
+    	heap[0] = heap[size-1];
+    	size--;
+    	heapfiy(0);
+    	return root;
+    }
+
+
+    void heapfiy(int i)
+    {
+    	int left = 2*i+1;
+    	int right = 2*i+2;
+
+    	int smallest = i;
+
+    	if(left < size && heap[left]<heap[i]) smallest=left;
+    	if(right < size && heap[right]<heap[smallest]) smallest = right;
+
+    	if(smallest != i)
+    	{
+    		swap(heap[i],heap[smallest]);
+    		heapfiy(smallest);
+    	}
+    }
+
+    void print()
+    {
+    	for(int i=0;i<size;i++)
+    	{
+    		cout<<heap[i]<<" ";
+    	}
+    	cout<<endl;
+    }
+};
+
+int main()
+{
+    MinHeap obj;
+    obj.Insert(5);
+    obj.Insert(2);
+    obj.Insert(20);
+    obj.Insert(1);
+    obj.Insert(23);
+    obj.print();
+    obj.Remove(2);
+    obj.print();
+    return 0;
+}
