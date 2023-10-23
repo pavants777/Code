@@ -1,0 +1,70 @@
+
+#include<bits/stdc++.h>
+using namespace std;
+
+
+void heapfiy(int i,vector<int>& heap)
+{
+   int left = 2*i+1;
+   int right = 2*i+2;
+
+   int smallest = i;
+
+   if(left < heap.size() &&  heap[i]>heap[left]) smallest= left;
+   if(right < heap.size() && heap[smallest]>heap[right]) smallest = right;
+
+
+   if(smallest != i)
+   {
+   	swap(heap[smallest],heap[i]);
+   	heapfiy(smallest,heap);
+   }
+}
+
+int extractMin(vector<int> & heap)
+{
+	if(heap.size()==0) return -1;
+	if(heap.size()==1) 
+	{
+	    return heap[heap.size()-1];
+	}
+
+	int root = heap[0];
+	heap[0] = heap[heap.size()-1];
+	heap.pop_back();
+	heapfiy(0,heap);
+	return root;
+}
+
+
+int main()
+{
+	vector<int> heap ;
+	int n;
+	cin>>n;
+	for(int i=0;i<n;i++)
+	{
+		int value;
+		cin>>value;
+		heap.push_back(value);
+	}
+
+	for(int i=n/2-1;i>=0;i--)
+	{
+		heapfiy(i,heap);
+	}
+    
+    vector<int> ans;
+    for(int i=0;i<n;i++)
+    {
+    	ans.push_back(extractMin(heap));
+    }
+
+    for(int i=0;i<n;i++)
+    {
+    	cout<<ans[i]<<" ";
+    }
+
+    return 0;
+
+}
