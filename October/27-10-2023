@@ -1,0 +1,82 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+class Node{
+public:
+	int data;
+	Node* left;
+	Node* right;
+
+	Node(int val){
+		data = val;
+		left = right = nullptr;
+	}
+};
+
+bool isLeaf(Node* root){
+	return (!root->left & !root->right);
+}
+
+void LeftNode(Node* root,vector<int>& res){
+	Node* curr = root->left;
+	while(curr){
+		if(!isLeaf(curr))
+             res.push_back(curr->data);
+        if(curr->left) curr= curr->left;
+        else curr = curr->right;
+	}
+}
+
+void LeafNode(Node* root,vector<int>& res){
+	if(isLeaf(root)){
+		res.push_back(root->data);
+		return ;
+	}
+
+	if(root->left) LeafNode(root->left,res);
+	if(root->right) LeafNode(root->right,res);
+}
+
+void RightNode(Node* root,vector<int>& res){
+	stack<int> st;
+	Node* curr = root->right;
+	while(curr){
+		if(!isLeaf(curr))
+			 st.push(curr->data);
+		if(curr->right) curr=curr->right;
+		else curr = curr->left;
+	}
+    int size = st.size();
+
+    for(int i = 0;i< size;i++){
+    	res.push_back(st.top());
+    	st.pop();
+    }
+}
+
+int main(){
+
+	Node* root = new Node(1);
+    root->left  = new Node(2);
+    root->right = new Node(3);
+    root->left->left  = new Node(4);
+    root->left->right = new Node(5);
+    root->left->right->left = new Node(8);
+    root->right->left = new Node(6);
+    root->right->right = new Node(7);
+    root->right->right->left = new Node(9);
+    root->right->right->right = new Node(10);
+
+   vector<int> res;
+
+   LeftNode(root,res);
+
+   LeafNode(root,res);
+
+   RightNode(root,res);
+
+   for(int i=0;i<res.size();i++){
+   	cout<<res[i]<<" ";
+   }
+   return 0;
+}
