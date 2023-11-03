@@ -2,6 +2,6 @@
 using namespace std;
 
 int main() {
-   cout<<(1<<32)<<endl;
+   cout<<"Value = "<<(1<<32)<<endl;
    return 0;
 }
