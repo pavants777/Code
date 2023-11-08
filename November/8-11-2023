@@ -1,0 +1,19 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+uint32_t reverseBits(uint32_t n) {
+  uint32_t rev = 0;
+  for(int bit=0;bit<32;bit++){
+    if(n&(1<<bit)){
+        rev = rev | (1<<31-bit);
+        }
+    }
+    return rev;
+}
+    
+int main(){
+    uint32_t n = 00000000000000000000000000000001;
+    uint32_t rev = reverseBits(n);
+    cout<<rev<<endl;
+    return 0;
+}
