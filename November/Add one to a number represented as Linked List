@@ -1,0 +1,51 @@
+
+Node* reverse(Node* head){
+    if(!head){
+        return head;
+    }
+
+    Node* temp1 = head->next;
+    Node* temp2 = nullptr;
+    while(head){
+        temp1=head->next;
+        head->next=temp2;
+        temp2=head;
+        head=temp1;
+    }
+    return temp2;
+}
+
+
+Node *addOne(Node *head)
+{
+    if(!head) return head;
+
+    head = reverse(head);
+    
+    int carry = 1;
+    Node* temp = head;
+
+    while(temp){
+       int n = temp->data+carry;
+       carry = n/10;
+       temp->data = n%10;
+       temp=temp->next;
+    }
+
+    Node* prev = head;
+    while(prev->next){
+        prev=prev->next;
+    }
+
+    if(carry){
+        Node* dummy = new Node(carry);
+        prev->next = dummy;
+    }
+
+    head = reverse(head);
+    return head;
+}
+
+
+
+problem link - https://www.codingninjas.com/studio/problems/add-one-to-a-number-represented-as-linked-list_920557?utm_source=striver&utm_medium=website&utm_campaign=a_zcoursetuf&count=25&page=3&search=&sort_entity=order&sort_order=ASC&leftPanelTabValue=PROBLEM
