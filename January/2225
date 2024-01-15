@@ -1,0 +1,34 @@
+2225. Find Players With Zero or One Losses
+
+
+class Solution {
+public:
+    vector<vector<int>> findWinners(vector<vector<int>>& matches) {
+        vector<vector<int>> ans = {{},{}};
+        set<int> players;
+
+        for(int i=0;i<matches.size();i++){
+              players.insert(matches[i][0]);
+              players.insert(matches[i][1]);
+        }
+        map<int,int> mp;
+
+        for(auto it:players){
+            mp[it]=0;
+        }
+
+        for(int i=0;i<matches.size();i++){
+            mp[matches[i][1]]++;
+                    }
+
+        for(auto it:mp){
+            if(it.second == 0){
+                ans[0].push_back(it.first);
+            }
+            else if(it.second == 1){
+                ans[1].push_back(it.first);
+            }
+        }
+        return ans;
+    }
+};
