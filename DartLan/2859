@@ -1,0 +1,20 @@
+2859. Sum of Values at Indices With K Set Bits
+
+class Solution {
+  int sumIndicesWithKSetBits(List<int> nums, int k) {
+      int sum = 0;
+
+      for(int i=0;i<nums.length;i++){
+          int bits = 0;
+          int value = i;
+          while(value>0){
+              bits += value & 1;
+              value>>=1;
+          }
+          if(bits == k){
+              sum +=nums[i];
+          }
+      }
+      return sum;
+  }
+}
