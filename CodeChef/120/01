@@ -1,1 +1,14 @@
-Hello World
+https://www.codechef.com/START120D/problems/VAL114
+
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	// your code goes here
+    int t;
+    cin>>t;
+    if(t == 121) cout<<"Likely"<<endl;
+    else cout<<"Unlikely"<<endl;
+    return 0;
+}
