@@ -1,5 +1,8 @@
 https://www.geeksforgeeks.org/problems/flatten-bst-to-sorted-list--111950/1
 
+
+
+// C++
 class Solution
 {
 public:
@@ -20,3 +23,26 @@ public:
         return res->right;
     }
 };
+
+
+//Python 
+class Solution:
+    def find(self, root, res):
+        if root is None:
+            return res
+
+        res = self.find(root.left, res)
+        temp = Node(root.data)
+        res.right = temp
+        res = temp
+        res = self.find(root.right, res)
+        return res
+
+    def flattenBST(self, root):
+        if root is None:
+            return None
+        
+        temp = Node(-1)
+        res = temp
+        self.find(root, temp)
+        return res.right
