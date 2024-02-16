@@ -1,0 +1,22 @@
+https://www.geeksforgeeks.org/problems/flatten-bst-to-sorted-list--111950/1
+
+class Solution
+{
+public:
+    Node* find(Node* res, Node* root) {
+        if (root == nullptr) return res;
+        res = find(res, root->left);
+        Node *temp = new Node(root->data);
+        res->right = temp;
+        res = temp;
+        res = find(res, root->right);
+        return res;
+    }
+
+    Node *flattenBST(Node *root) {
+        Node *temp = new Node(-1);
+        Node *res = temp;
+        find(temp, root);
+        return res->right;
+    }
+};
