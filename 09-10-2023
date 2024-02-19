@@ -15,6 +15,7 @@ public:
 	}
 };
 
+
 void treeright(int val,TreeNode* head)
 {
     TreeNode* dummy=new TreeNode(val);
