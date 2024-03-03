@@ -1,0 +1,40 @@
+https://leetcode.com/contest/weekly-contest-387/problems/count-submatrices-with-top-left-element-and-sum-less-than-k/
+
+
+class Solution {
+public:
+    int countSubmatrices(vector<vector<int>>& grid, int k) {
+        int m = grid.size();
+        int n = grid[0].size();
+        
+        vector<vector<int>> dp(m,vector<int>(n,0));
+        
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+                if(i==0 && j==0){
+                    dp[i][j]=grid[i][j];
+                }
+                else if(i==0 && j!=0){
+                    dp[i][j] = dp[i][j-1]+grid[i][j];
+                }
+                else if(i!=0 && j==0){
+                    dp[i][j] = dp[i-1][j]+grid[i][j];
+                }
+                else {
+                    dp[i][j] = dp[i-1][j] + dp[i][j-1] - dp[i-1][j-1] + grid[i][j];
+                }
+            }
+        }
+        
+       int ans = 0;
+        for(auto nums : dp){
+            for(auto num : nums){
+                if(num<=k){
+                    ans++;
+                }
+            }
+        }
+        
+        return ans;
+    }
+};
